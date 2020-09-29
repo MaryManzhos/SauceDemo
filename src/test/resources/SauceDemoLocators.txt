@@ -1,0 +1,78 @@
+Page Authorization
+Username: By.id("user-name");
+Password: By.id("password");
+Button Login: By.id("login-button");
+Error message: By.cssselector("[data-test=error]");
+
+Page Products
+Title Products: By.classname("product_label");
+Menu: By.classname("bm-burger-button");
+Menu - All Items: By.id("inventory_sidebar_link");
+Menu - About: By.id("about_sidebar_link");
+Menu - Logout: By.id("logout_sidebar_link");
+Menu - Reset App State: By.id("reset_sidebar_link");
+Sort: By.classname("product_sort_container");
+Shopping cart: By.ud("shopping_cart_container");
+Switcher cart: By.ud("fa-layers-counter shopping_cart_badge");
+Item name: By.classname("inventory_item_name"); //findelements
+Item description: By.classname("inventory_item_desc"); //findelements
+Item price: By.classname("inventory_item_price"); //findelements
+Button ADD TO CART: By.classname("btn_primary btn_inventory"); //findelements
+Button REMOVE: By.classname("btn_secondary btn_inventory"); //findelements
+
+Page About product
+Item name: By.classname("inventory_details_name");
+Item description: By.classname("inventory_details_desc");
+Item price: By.classname("inventory_details_price");
+Button ADD TO CART: By.classname("btn_primary btn_inventory");
+Button BACK: By.classname("inventory_details_back_button");
+Button REMOVE: By.classname("btn_secondary btn_inventory");
+
+Page YOUR CART
+Title YOUR CART: By.classname("subheader");
+QTY: BY.classname("cart_quantity");
+Item name: By.classname("inventory_item_name"); //findelements
+Item description: By.classname("inventory_item_desc"); //findelements
+Item price: By.classname("inventory_item_price"); //findelements
+Button REMOVE: By.classname("btn_secondary btn_inventory"); //findelements
+Button Continue Shopping: By.classname("btn_secondary");
+Button CHECKOUT: By.classname("btn_action checkout_button");
+
+Page Checkout: Your Information
+Title Checkout: Your Information: By.classname("subheader");
+First Name: By.id("first-name");
+Last Name: By.id("last-name");
+Zip/Postal Code: By.id("postal-code");
+Error message: By.cssselector("[data-test=error]");
+Button CANCEL: By.classname("cart_cancel_link btn_secondary");
+Button CONTINUE: By.classname("btn_primary cart_button");
+
+Page Checkout: Overview
+Title Checkout: Overview: By.classname("subheader");
+QTY: BY.classname("summary_quantity");
+Item name: By.classname("inventory_item_name"); //findelements
+Item description: By.classname("inventory_item_desc"); //findelements
+Item price: By.classname("inventory_item_price"); //findelements
+String id = "#31337";
+Payment Information: By.cssselector("[value="SauceCard + id +"]");
+String shipment = "FREE PONY EXPRESS DELIVERY!";
+Shipping Information: By.cssselector("[value="shipment"]]");
+Item total: By.classname("summary_subtotal_label");
+Tax: By.classname("summary_tax_label");
+Total: By.classname("summary_total_label");
+Button CANCEL: By.classname("cart_cancel_link btn_secondary");
+Button FINISH: By.classname("btn_action cart_button");
+
+
+Page Finish
+Title Finish: By.classname("subheader");
+THANK YOU FOR YOUR ORDER: By.classname("complete-header");
+Your order has been dispatched, and will arrive just as fast as the pony can get there!: By.classname("complete-text");
+Image PONY EXPRESS: By.classname("pony_express");
+
+
+
+
+
+
+
