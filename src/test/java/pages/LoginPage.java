@@ -3,7 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import static testData.TestData.*;
+import static testData.TestData.URL;
 
 public class LoginPage extends BasePage {
     public static final By USERNAME_INPUT = By.id("user-name");

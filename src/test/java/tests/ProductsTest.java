@@ -2,7 +2,8 @@ package tests;
 
 import org.testng.annotations.Test;
 
-import static testData.TestData.*;
+import static testData.TestData.PASSWORD;
+import static testData.TestData.USERNAME_1;
 
 public class ProductsTest extends BaseTest {
     @Test
