@@ -3,9 +3,9 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
 
-public class CartPage extends BasePage{
+public class CartPage extends BasePage {
 
     public static final String URL = "https://www.saucedemo.com/cart.html";
     String priceLocator = "//*[contains(text(),'%s')]/ancestor::*[@class='cart_item']" +

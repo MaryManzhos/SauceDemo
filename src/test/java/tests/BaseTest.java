@@ -3,7 +3,8 @@ package tests;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import pages.CartPage;
 import pages.LoginPage;
 import pages.ProductsPage;
@@ -16,8 +17,6 @@ public class BaseTest {
     LoginPage loginPage;
     ProductsPage productsPage;
     CartPage cartPage;
-    public static final String USERNAME = "standard_user";
-    public static final String PASSWORD = "secret_sauce";
 
     @BeforeMethod
     public void setUp() {
@@ -33,7 +32,7 @@ public class BaseTest {
     }
 
     @AfterMethod
-    public void closeBrowser(){
+    public void closeBrowser() {
         driver.quit();
     }
 }

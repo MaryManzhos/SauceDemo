@@ -5,13 +5,17 @@ import org.openqa.selenium.WebDriver;
 
 public class ProductsPage extends BasePage {
     String addToCartLocator = "//*[contains(text(),'%s')]/ancestor::div[@class='inventory_item']//button";
+    public static final By  NAME_OF_PAGE_PRODUCTS = By.className("product_label");
 
     public ProductsPage(WebDriver driver) {
         super(driver);
     }
 
-    public void addToCart(String productName){
-        driver.findElement(By.xpath(String.format(addToCartLocator, productName))).click();
+    public String getNameOfPage(){
+        return driver.findElement(NAME_OF_PAGE_PRODUCTS).getText();
+    }
 
+    public void addToCart(String productName) {
+        driver.findElement(By.xpath(String.format(addToCartLocator, productName))).click();
     }
 }
