@@ -13,6 +13,7 @@ public class ProductsTest extends BaseTest {
         loginPage.logIn(USERNAME_1, PASSWORD);
         productsPage.addToCart("Sauce Labs Fleece Jacket");
         header.goToPageCart();
+        cartPage.isPageOpen();
         cartPage.productDetailsShouldBeLike("Sauce Labs Fleece Jacket", "1", "49.99");
     }
 

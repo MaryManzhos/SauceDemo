@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class CheckoutInformationPage extends BasePage {
     public static final By FIRST_NAME_INPUT = By.id("first-name");
@@ -12,6 +13,10 @@ public class CheckoutInformationPage extends BasePage {
 
     public CheckoutInformationPage(WebDriver driver) {
         super(driver);
+    }
+
+    public void isPageOpen() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(CONTINUE_BUTTON));
     }
 
     public void continueToPageCheckoutOverview(String firstName, String lastName, String zipPostalCode) {

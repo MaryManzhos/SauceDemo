@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static org.testng.Assert.assertEquals;
 
@@ -15,6 +16,10 @@ public class CartPage extends BasePage {
 
     public CartPage(WebDriver driver) {
         super(driver);
+    }
+
+    public void isPageOpen() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(CHECKOUT_BUTTON));
     }
 
     public void productDetailsShouldBeLike(String productName, String quantity, String price) {

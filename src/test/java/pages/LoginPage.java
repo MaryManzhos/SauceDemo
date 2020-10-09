@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static testData.TestData.URL;
 
@@ -13,6 +14,10 @@ public class LoginPage extends BasePage {
 
     public LoginPage(WebDriver driver) {
         super(driver);
+    }
+
+    public void isPageOpen() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(LOGIN_BUTTON));
     }
 
     public void openPage() {

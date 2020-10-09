@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class Header extends BasePage {
 
@@ -15,6 +16,10 @@ public class Header extends BasePage {
 
     public String getCounterFromCart() {
         return driver.findElement(CART_COUNTER).getText();
+    }
+
+    public void isPageOpen() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(MENU_ICON));
     }
 
     public void goToPageCart() {
