@@ -13,7 +13,8 @@ public class BaseTest {
 
     WebDriver driver;
     //LoginPage loginPage;
-    LoginPageFactory loginPage;
+    //LoginPageFactory loginPage;
+    LoginFluentChainOfInvocationPage loginPage;
     ProductsPage productsPage;
     CartPage cartPage;
     Header header;
@@ -30,7 +31,7 @@ public class BaseTest {
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        loginPage = new LoginPageFactory(driver);
+        loginPage = new LoginFluentChainOfInvocationPage(driver);
         productsPage = new ProductsPage(driver);
         cartPage = new CartPage(driver);
         header = new Header(driver);

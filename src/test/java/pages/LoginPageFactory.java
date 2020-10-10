@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static testData.TestData.URL;
 
-public class LoginPageFactory extends BasePage{
+public class LoginPageFactory extends BasePage {
     @FindBy(id = "user-name")
     WebElement usernameInput;
     @FindBy(id = "password")
@@ -20,11 +20,12 @@ public class LoginPageFactory extends BasePage{
 
     public LoginPageFactory(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(driver, this);
     }
 
-    public void isPageOpen() {
+    public LoginPageFactory isPageOpen() {
         wait.until(ExpectedConditions.visibilityOf(loginButton));
+        return this;
     }
 
     public void openPage() {

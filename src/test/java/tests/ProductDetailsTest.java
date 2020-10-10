@@ -4,49 +4,54 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
-
 import static testData.TestData.*;
 
-public class ProductDetailsTest extends BaseTest{
+public class ProductDetailsTest extends BaseTest {
 
     @Test
     public void addToCartProductFromProductDetailPage() {
-        loginPage.openPage();
-        loginPage.isPageOpen();
-        loginPage.logIn(USERNAME_1,PASSWORD);
-        productsPage.isPageOpen();
-        productsPage.goToProductDetails(ITEM_PRODUCT_NAME_1);
-        productDetailPage.isPageOpen();
-        productDetailPage.addToCartProduct();
-        header.goToPageCart();
-        cartPage.isPageOpen();
-        cartPage.productDetailsShouldBeLike("Sauce Labs Fleece Jacket", "1", "49.99");
+        loginPage.openPage()
+                .isPageOpen()
+                .successfulLogIn(USERNAME_1, PASSWORD)
+                .isPageOpen()
+                .goToProductDetails(ITEM_PRODUCT_NAME_1)
+                .isPageOpen()
+                .addToCartProduct();
+        header.goToPageCart()
+                .isPageOpen();
+
+        assertEquals(cartPage.getDetailsOfProductIntoCart(ITEM_PRODUCT_NAME_1).get("Quantity"), "1", "Quantity is not correct");
+        assertEquals(cartPage.getDetailsOfProductIntoCart(ITEM_PRODUCT_NAME_1).get("Product_Name"), ITEM_PRODUCT_NAME_1, "Product name is not correct");
+        assertEquals(cartPage.getDetailsOfProductIntoCart(ITEM_PRODUCT_NAME_1).get("Price"), "49.99", "Price is not correct");
     }
 
     @Test
     public void removeProductFromCartFromProductDetailPage() {
-        loginPage.openPage();
-        loginPage.isPageOpen();
-        loginPage.logIn(USERNAME_1,PASSWORD);
-        productsPage.isPageOpen();
-        productsPage.goToProductDetails(ITEM_PRODUCT_NAME_1);
-        productDetailPage.isPageOpen();
-        productDetailPage.addToCartProduct();
-        productDetailPage.addToCartProduct();
-        header.goToPageCart();
-        cartPage.isPageOpen();
+        loginPage.openPage()
+                .isPageOpen()
+                .successfulLogIn(USERNAME_1, PASSWORD)
+                .isPageOpen()
+                .isPageOpen()
+                .goToProductDetails(ITEM_PRODUCT_NAME_1)
+                .isPageOpen()
+                .addToCartProduct()
+                .addToCartProduct();
+        header.goToPageCart()
+                .isPageOpen();
+
         assertTrue(cartPage.isCartEmpty());
     }
 
     @Test
     public void backToProductPage() {
-        loginPage.openPage();
-        loginPage.isPageOpen();
-        loginPage.logIn(USERNAME_1,PASSWORD);
-        productsPage.isPageOpen();
-        productsPage.goToProductDetails(ITEM_PRODUCT_NAME_1);
-        productDetailPage.isPageOpen();
-        productDetailPage.backToProductPage();
-        assertEquals(productsPage.getNameOfPage(),"Products");
+        loginPage.openPage()
+                .isPageOpen()
+                .successfulLogIn(USERNAME_1, PASSWORD)
+                .isPageOpen()
+                .goToProductDetails(ITEM_PRODUCT_NAME_1)
+                .isPageOpen()
+                .backToProductPage();
+
+        assertEquals(productsPage.getNameOfPage(), "Products");
     }
 }

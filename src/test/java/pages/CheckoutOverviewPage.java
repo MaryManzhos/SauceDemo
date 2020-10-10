@@ -19,15 +19,16 @@ public class CheckoutOverviewPage extends BasePage {
         super(driver);
     }
 
-    public void isPageOpen() {
+    public CheckoutOverviewPage isPageOpen() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(TITLE_PAGE));
+        return this;
     }
 
     public String getTitlePage() {
         return driver.findElement(TITLE_PAGE).getText();
     }
 
-    public Map<String,String> getValueFromSum() {
+    public Map<String, String> getValueFromSum() {
         Map<String, String> valuesOfSum = new HashMap<String, String>();
         valuesOfSum.put("Item_Total", driver.findElement(TOTAL_ITEM).getText());
         valuesOfSum.put("Item_Tax", driver.findElement(TAX_ITEM).getText());
@@ -35,11 +36,13 @@ public class CheckoutOverviewPage extends BasePage {
         return valuesOfSum;
     }
 
-    public void returnToPageCheckOutInf() {
+    public CheckoutInformationPage returnToPageCheckOutInf() {
         driver.findElement(CANCEL_BUTTON).click();
+        return new CheckoutInformationPage(driver);
     }
 
-    public void goToPageFinish() {
+    public FinishPage goToPageFinish() {
         driver.findElement(FINISH_BUTTON).click();
+        return new FinishPage(driver);
     }
 }

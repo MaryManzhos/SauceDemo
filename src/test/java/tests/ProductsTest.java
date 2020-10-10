@@ -9,21 +9,27 @@ import static testData.TestData.*;
 public class ProductsTest extends BaseTest {
     @Test
     public void productsShouldBeAddedIntoCart() {
-        loginPage.openPage();
-        loginPage.isPageOpen();
-        loginPage.logIn(USERNAME_1, PASSWORD);
-        productsPage.isPageOpen();
-        productsPage.addToCart(ITEM_PRODUCT_NAME_1);
+        loginPage
+                .openPage()
+                .isPageOpen()
+                .successfulLogIn(USERNAME_1, PASSWORD);
+        productsPage
+                .isPageOpen()
+                .addToCart(ITEM_PRODUCT_NAME_1);
         header.goToPageCart();
         cartPage.isPageOpen();
-        cartPage.productDetailsShouldBeLike("Sauce Labs Fleece Jacket", "1", "49.99");
+
+        assertEquals(cartPage.getDetailsOfProductIntoCart(ITEM_PRODUCT_NAME_1).get("Quantity"), "1", "Quantity is not correct");
+        assertEquals(cartPage.getDetailsOfProductIntoCart(ITEM_PRODUCT_NAME_1).get("Product_Name"), ITEM_PRODUCT_NAME_1, "Product name is not correct");
+        assertEquals(cartPage.getDetailsOfProductIntoCart(ITEM_PRODUCT_NAME_1).get("Price"), "49.99", "Price is not correct");
     }
 
     @Test
     public void displayCounterOnCart() {
-        loginPage.openPage();
-        loginPage.isPageOpen();
-        loginPage.logIn(USERNAME_1, PASSWORD);
+        loginPage
+                .openPage()
+                .isPageOpen()
+                .successfulLogIn(USERNAME_1, PASSWORD);
         productsPage.isPageOpen();
         productsPage.addToCart("Sauce Labs Fleece Jacket");
         productsPage.addToCart("Sauce Labs Bike Light");
@@ -32,9 +38,10 @@ public class ProductsTest extends BaseTest {
 
     @Test
     public void productsShouldBeRemovedFromCart() {
-        loginPage.openPage();
-        loginPage.isPageOpen();
-        loginPage.logIn(USERNAME_1, PASSWORD);
+        loginPage
+                .openPage()
+                .isPageOpen()
+                .successfulLogIn(USERNAME_1, PASSWORD);
         productsPage.isPageOpen();
         productsPage.addToCart(ITEM_PRODUCT_NAME_1);
         productsPage.addToCart(ITEM_PRODUCT_NAME_1);

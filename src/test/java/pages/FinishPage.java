@@ -12,8 +12,9 @@ public class FinishPage extends BasePage {
         super(driver);
     }
 
-    public void isPageOpen() {
+    public FinishPage isPageOpen() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(TITLE_OF_PAGE));
+        return this;
     }
 
     public String getInfoText() {

@@ -17,17 +17,18 @@ public class ProductsPage extends BasePage {
         return driver.findElement(NAME_OF_PAGE_PRODUCTS).getText();
     }
 
-    public void isPageOpen() {
+    public ProductsPage isPageOpen() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(NAME_OF_PAGE_PRODUCTS));
+        return this;
     }
 
-    public void addToCart(String productName) {
+    public ProductsPage addToCart(String productName) {
         driver.findElement(By.xpath(String.format(addToCartLocator, productName))).click();
+        return this;
     }
 
-    public void goToProductDetails(String productName) {
-        driver.findElement(By.xpath(String.format(itemProduct,productName))).click();
+    public ProductDetailPage goToProductDetails(String productName) {
+        driver.findElement(By.xpath(String.format(itemProduct, productName))).click();
+        return new ProductDetailPage(driver);
     }
-
-
 }

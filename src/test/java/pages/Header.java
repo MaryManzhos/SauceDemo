@@ -18,11 +18,13 @@ public class Header extends BasePage {
         return driver.findElement(CART_COUNTER).getText();
     }
 
-    public void isPageOpen() {
+    public Header isPageOpen() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(MENU_ICON));
+        return this;
     }
 
-    public void goToPageCart() {
+    public CartPage goToPageCart() {
         driver.findElement(CART_ICON).click();
+        return new CartPage(driver);
     }
 }

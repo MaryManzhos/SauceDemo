@@ -9,29 +9,31 @@ public class CartTest extends BaseTest {
 
     @Test
     public void backToProductPage() {
-        loginPage.openPage();
-        loginPage.isPageOpen();
-        loginPage.logIn(USERNAME_1, PASSWORD);
-        productsPage.isPageOpen();
-        productsPage.addToCart(ITEM_PRODUCT_NAME_1);
-        productsPage.addToCart(ITEM_PRODUCT_NAME_2);
-        header.goToPageCart();
-        cartPage.isPageOpen();
-        cartPage.goToProductPage();
+        loginPage.openPage()
+                .isPageOpen()
+                .successfulLogIn(USERNAME_1, PASSWORD)
+                .isPageOpen()
+                .addToCart(ITEM_PRODUCT_NAME_1)
+                .addToCart(ITEM_PRODUCT_NAME_2);
+        header.goToPageCart()
+                .isPageOpen()
+                .goToProductPage();
+
         assertEquals(productsPage.getNameOfPage(), "Products");
     }
 
     @Test
     public void removeItemFromCart() {
-        loginPage.openPage();
-        loginPage.isPageOpen();
-        loginPage.logIn(USERNAME_1, PASSWORD);
-        productsPage.isPageOpen();
-        productsPage.addToCart(ITEM_PRODUCT_NAME_1);
-        productsPage.addToCart(ITEM_PRODUCT_NAME_2);
-        header.goToPageCart();
-        cartPage.isPageOpen();
-        cartPage.removeItemFromCart();
-        assertEquals(cartPage.isItemRemoved(),1);
+        loginPage.openPage()
+                .isPageOpen()
+                .successfulLogIn(USERNAME_1, PASSWORD)
+                .isPageOpen()
+                .addToCart(ITEM_PRODUCT_NAME_1)
+                .addToCart(ITEM_PRODUCT_NAME_2);
+        header.goToPageCart()
+                .isPageOpen()
+                .removeItemFromCart();
+
+        assertEquals(cartPage.isItemRemoved(), 1);
     }
 }

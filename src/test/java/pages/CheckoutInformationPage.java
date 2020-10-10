@@ -16,22 +16,33 @@ public class CheckoutInformationPage extends BasePage {
         super(driver);
     }
 
-    public void isPageOpen() {
+    public CheckoutInformationPage isPageOpen() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(CONTINUE_BUTTON));
+        return this;
     }
 
-    public void continueToPageCheckoutOverview(String firstName, String lastName, String zipPostalCode) {
+    public CheckoutOverviewPage successfulContinueToPageCheckoutOverview(String firstName, String lastName, String zipPostalCode) {
         driver.findElement(FIRST_NAME_INPUT).sendKeys(firstName);
         driver.findElement(LAST_NAME_INPUT).sendKeys(lastName);
         driver.findElement(ZIP_POSTAL_CODE_INPUT).sendKeys(zipPostalCode);
         driver.findElement(CONTINUE_BUTTON).click();
+        return new CheckoutOverviewPage(driver);
+    }
+
+    public CheckoutInformationPage failedContinueToPageCheckoutOverview(String firstName, String lastName, String zipPostalCode) {
+        driver.findElement(FIRST_NAME_INPUT).sendKeys(firstName);
+        driver.findElement(LAST_NAME_INPUT).sendKeys(lastName);
+        driver.findElement(ZIP_POSTAL_CODE_INPUT).sendKeys(zipPostalCode);
+        driver.findElement(CONTINUE_BUTTON).click();
+        return this;
     }
 
     public String getErrorMessage() {
         return driver.findElement(ERROR_MESSAGE).getText();
     }
 
-    public void returnToPageCart() {
+    public CartPage returnToPageCart() {
         driver.findElement(CANCEL_BUTTON).click();
+        return new CartPage(driver);
     }
 }

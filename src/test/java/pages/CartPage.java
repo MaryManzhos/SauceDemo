@@ -5,9 +5,9 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
-import static org.testng.Assert.assertEquals;
 
 public class CartPage extends BasePage {
 
@@ -16,32 +16,36 @@ public class CartPage extends BasePage {
     public static final By CONTINUE_SHOPPING_BUTTON = By.cssSelector(".cart_footer .btn_secondary");
     public static final By ITEMS = By.className("cart_item");
     public static final By TITLE_OF_PAGE = By.className("subheader");
-    String priceLocator = "//*[contains(text(),'%s')]/ancestor::*[@class='cart_item']" +
-            "//div[@class='inventory_item_price']";
+    String productNameLocator = "//*[contains(text(),'%s')]/ancestor::*[@class='cart_item']" +
+            "//div[@class='inventory_item_name']";
     String quantityLocator = "//*[contains(text(),'%s')]/ancestor::*[@class='cart_item']" +
             "//div[@class='cart_quantity']";
+    String priceLocator = "//*[contains(text(),'%s')]/ancestor::*[@class='cart_item']" +
+            "//div[@class='inventory_item_price']";
 
     public CartPage(WebDriver driver) {
         super(driver);
     }
 
-    public void isPageOpen() {
+    public CartPage isPageOpen() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(CHECKOUT_BUTTON));
+        return this;
     }
 
-    public void productDetailsShouldBeLike(String productName, String quantity, String price) {
-        String actualPrice = driver.findElement(By.xpath(String.format(priceLocator, productName))).getText();
-        String actualQuantity = driver.findElement(By.xpath(String.format(quantityLocator, productName))).getText();
-        assertEquals(actualPrice, price, "Price is not correct");
-        assertEquals(actualQuantity, quantity, "Price is not correct");
+    public Map<String, String> getDetailsOfProductIntoCart(String productName) {
+        Map<String, String> values = new HashMap<String, String>();
+        values.put("Quantity", driver.findElement(By.xpath(String.format(quantityLocator, productName))).getText());
+        values.put("Product_Name", driver.findElement(By.xpath(String.format(productNameLocator, productName))).getText());
+        values.put("Price", driver.findElement(By.xpath(String.format(priceLocator, productName))).getText());
+        return values;
     }
 
     public boolean isCartEmpty() {
-        try{
+        try {
             driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
             driver.findElement(ITEMS);
             return false;
-        } catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             return true;
         }
     }
@@ -50,19 +54,22 @@ public class CartPage extends BasePage {
         return driver.findElement(TITLE_OF_PAGE).getText();
     }
 
-    public void removeItemFromCart() {
+    public CartPage removeItemFromCart() {
         driver.findElements(REMOVE_BUTTON).get(0).click();
+        return this;
     }
 
     public int isItemRemoved() {
         return driver.findElements(REMOVE_BUTTON).size();
     }
 
-    public void goToCheckoutInformationPage() {
+    public CheckoutInformationPage goToCheckoutInformationPage() {
         driver.findElement(CHECKOUT_BUTTON).click();
+        return new CheckoutInformationPage(driver);
     }
 
-    public void goToProductPage() {
+    public ProductsPage goToProductPage() {
         driver.findElement(CONTINUE_SHOPPING_BUTTON).click();
+        return new ProductsPage(driver);
     }
 }
