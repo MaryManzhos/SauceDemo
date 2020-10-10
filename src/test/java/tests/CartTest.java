@@ -9,13 +9,15 @@ public class CartTest extends BaseTest {
 
     @Test
     public void backToProductPage() {
-        loginPage.openPage()
+        loginPage
+                .openPage()
                 .isPageOpen()
                 .successfulLogIn(USERNAME_1, PASSWORD)
                 .isPageOpen()
                 .addToCart(ITEM_PRODUCT_NAME_1)
                 .addToCart(ITEM_PRODUCT_NAME_2);
-        header.goToPageCart()
+        header
+                .goToPageCart()
                 .isPageOpen()
                 .goToProductPage();
 
@@ -24,13 +26,15 @@ public class CartTest extends BaseTest {
 
     @Test
     public void removeItemFromCart() {
-        loginPage.openPage()
+        loginPage
+                .openPage()
                 .isPageOpen()
                 .successfulLogIn(USERNAME_1, PASSWORD)
                 .isPageOpen()
                 .addToCart(ITEM_PRODUCT_NAME_1)
                 .addToCart(ITEM_PRODUCT_NAME_2);
-        header.goToPageCart()
+        header
+                .goToPageCart()
                 .isPageOpen()
                 .removeItemFromCart();
 

@@ -8,11 +8,13 @@ import static testData.TestData.*;
 public class CheckoutInformationTest extends BaseTest {
     @Test
     public void isSuccessfulCheckoutInformation() {
-        loginPage.openPage()
+        loginPage
+                .openPage()
                 .isPageOpen()
                 .successfulLogIn(USERNAME_1, PASSWORD)
                 .addToCart(ITEM_PRODUCT_NAME_1);
-        header.goToPageCart()
+        header
+                .goToPageCart()
                 .goToCheckoutInformationPage()
                 .successfulContinueToPageCheckoutOverview(FIRST_NAME, LAST_NAME, ZIP_POSTAL_CODE);
 
@@ -21,12 +23,14 @@ public class CheckoutInformationTest extends BaseTest {
 
     @Test
     public void isCanceledToCheckoutInformation() {
-        loginPage.openPage()
+        loginPage
+                .openPage()
                 .isPageOpen()
                 .successfulLogIn(USERNAME_1, PASSWORD)
                 .isPageOpen()
                 .addToCart(ITEM_PRODUCT_NAME_1);
-        header.goToPageCart()
+        header
+                .goToPageCart()
                 .isPageOpen()
                 .goToCheckoutInformationPage()
                 .returnToPageCart();
@@ -36,12 +40,14 @@ public class CheckoutInformationTest extends BaseTest {
 
     @Test
     public void showErrorMessageWhenFieldsAreEmpty() {
-        loginPage.openPage()
+        loginPage
+                .openPage()
                 .isPageOpen()
                 .successfulLogIn(USERNAME_1, PASSWORD)
                 .isPageOpen()
                 .addToCart(ITEM_PRODUCT_NAME_1);
-        header.goToPageCart()
+        header
+                .goToPageCart()
                 .isPageOpen()
                 .goToCheckoutInformationPage()
                 .successfulContinueToPageCheckoutOverview("", "", "");

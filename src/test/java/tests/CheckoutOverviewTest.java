@@ -9,12 +9,14 @@ public class CheckoutOverviewTest extends BaseTest {
 
     @Test
     public void calculationSumOfCost() {
-        loginPage.openPage()
+        loginPage
+                .openPage()
                 .isPageOpen()
                 .successfulLogIn(USERNAME_1, PASSWORD)
                 .isPageOpen()
                 .addToCart(ITEM_PRODUCT_NAME_1);
-        header.goToPageCart()
+        header
+                .goToPageCart()
                 .isPageOpen()
                 .goToCheckoutInformationPage()
                 .successfulContinueToPageCheckoutOverview(FIRST_NAME, LAST_NAME, ZIP_POSTAL_CODE);
@@ -26,12 +28,14 @@ public class CheckoutOverviewTest extends BaseTest {
 
     @Test
     public void isCanceledToCheckoutInformation() {
-        loginPage.openPage()
+        loginPage
+                .openPage()
                 .isPageOpen()
                 .successfulLogIn(USERNAME_1, PASSWORD)
                 .isPageOpen()
                 .addToCart(ITEM_PRODUCT_NAME_1);
-        header.goToPageCart()
+        header
+                .goToPageCart()
                 .isPageOpen()
                 .goToCheckoutInformationPage()
                 .successfulContinueToPageCheckoutOverview(FIRST_NAME, LAST_NAME, ZIP_POSTAL_CODE)

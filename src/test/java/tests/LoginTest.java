@@ -20,7 +20,8 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void displayErrorMessageWhenUsernameIsEmpty() {
-        loginPage.openPage()
+        loginPage
+                .openPage()
                 .isPageOpen()
                 .failedLogIn("", PASSWORD);
 
@@ -29,7 +30,8 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void displayErrorMessageWhenPasswordIsEmpty() {
-        loginPage.openPage()
+        loginPage
+                .openPage()
                 .isPageOpen()
                 .failedLogIn(USERNAME_1, "");
 
@@ -38,7 +40,8 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void displayErrorMessageWhenUsernameIsNotValid() {
-        loginPage.openPage()
+        loginPage
+                .openPage()
                 .isPageOpen()
                 .failedLogIn(USERNAME_1, "12345");
 

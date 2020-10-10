@@ -27,7 +27,8 @@ public class ProductDetailsTest extends BaseTest {
 
     @Test
     public void removeProductFromCartFromProductDetailPage() {
-        loginPage.openPage()
+        loginPage
+                .openPage()
                 .isPageOpen()
                 .successfulLogIn(USERNAME_1, PASSWORD)
                 .isPageOpen()
@@ -36,7 +37,8 @@ public class ProductDetailsTest extends BaseTest {
                 .isPageOpen()
                 .addToCartProduct()
                 .addToCartProduct();
-        header.goToPageCart()
+        header
+                .goToPageCart()
                 .isPageOpen();
 
         assertTrue(cartPage.isCartEmpty());
@@ -44,7 +46,8 @@ public class ProductDetailsTest extends BaseTest {
 
     @Test
     public void backToProductPage() {
-        loginPage.openPage()
+        loginPage
+                .openPage()
                 .isPageOpen()
                 .successfulLogIn(USERNAME_1, PASSWORD)
                 .isPageOpen()
