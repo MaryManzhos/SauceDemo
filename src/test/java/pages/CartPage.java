@@ -12,6 +12,7 @@ import static org.testng.Assert.assertEquals;
 public class CartPage extends BasePage {
 
     public static final By CHECKOUT_BUTTON = By.className("checkout_button");
+    public static final By REMOVE_BUTTON = By.className("cart_button");
     public static final By ITEMS = By.className("cart_item");
     String priceLocator = "//*[contains(text(),'%s')]/ancestor::*[@class='cart_item']" +
             "//div[@class='inventory_item_price']";
@@ -41,6 +42,10 @@ public class CartPage extends BasePage {
         } catch (NoSuchElementException e){
             return true;
         }
+    }
+
+    public void removeItemFromCart() {
+        driver.findElement(REMOVE_BUTTON).click();
     }
 
     public void goToCheckoutInformationPage() {
