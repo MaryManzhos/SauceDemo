@@ -22,4 +22,8 @@ public class ProductDetailPage extends BasePage{
     public void addToCartProduct() {
         driver.findElement(ADD_TO_CART_BUTTON).click();
     }
+
+    public void backToProductPage() {
+        driver.findElement(BACK_BUTTON).click();
+    }
 }
