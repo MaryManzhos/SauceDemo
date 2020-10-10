@@ -49,5 +49,4 @@ public class ProductDetailsTest extends BaseTest{
         productDetailPage.backToProductPage();
         assertEquals(productsPage.getNameOfPage(),"Products");
     }
-
 }

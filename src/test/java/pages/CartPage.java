@@ -13,6 +13,7 @@ public class CartPage extends BasePage {
 
     public static final By CHECKOUT_BUTTON = By.className("checkout_button");
     public static final By REMOVE_BUTTON = By.className("cart_button");
+    public static final By CONTINUE_SHOPPING_BUTTON = By.cssSelector(".cart_footer .btn_secondary");
     public static final By ITEMS = By.className("cart_item");
     String priceLocator = "//*[contains(text(),'%s')]/ancestor::*[@class='cart_item']" +
             "//div[@class='inventory_item_price']";
@@ -45,10 +46,18 @@ public class CartPage extends BasePage {
     }
 
     public void removeItemFromCart() {
-        driver.findElement(REMOVE_BUTTON).click();
+        driver.findElements(REMOVE_BUTTON).get(0).click();
+    }
+
+    public int isItemRemoved() {
+        return driver.findElements(REMOVE_BUTTON).size();
     }
 
     public void goToCheckoutInformationPage() {
         driver.findElement(CHECKOUT_BUTTON).click();
+    }
+
+    public void goToProductPage() {
+        driver.findElement(CONTINUE_SHOPPING_BUTTON).click();
     }
 }
