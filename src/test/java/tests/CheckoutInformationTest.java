@@ -30,4 +30,18 @@ public class CheckoutInformationTest extends BaseTest {
         checkoutInformationPage.returnToPageCart();
         assertEquals(cartPage.getTitleOfPage(), "Your Cart", "Don't title Your Cart");
     }
+
+    @Test
+    public void showErrorMessageWhenFieldsAreEmpty() {
+        loginPage.openPage();
+        loginPage.isPageOpen();
+        loginPage.logIn(USERNAME_1, PASSWORD);
+        productsPage.isPageOpen();
+        productsPage.addToCart(ITEM_PRODUCT_NAME_1);
+        header.goToPageCart();
+        cartPage.isPageOpen();
+        cartPage.goToCheckoutInformationPage();
+        checkoutInformationPage.continueToPageCheckoutOverview("","","");
+        assertEquals(checkoutInformationPage.getErrorMessage(), "Error: First Name is required", "Don't display error message");
+    }
 }
