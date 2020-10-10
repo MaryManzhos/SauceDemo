@@ -13,6 +13,7 @@ public class CheckoutOverviewPage extends BasePage {
     public static final By TAX_ITEM = By.className("summary_tax_label");
     public static final By TOTAL = By.className("summary_total_label");
     public static final By CANCEL_BUTTON = By.cssSelector(".cart_cancel_link.btn_secondary");
+    public static final By FINISH_BUTTON = By.cssSelector(".btn_action.cart_button");
 
     public CheckoutOverviewPage(WebDriver driver) {
         super(driver);
@@ -36,5 +37,9 @@ public class CheckoutOverviewPage extends BasePage {
 
     public void returnToPageCheckOutInf() {
         driver.findElement(CANCEL_BUTTON).click();
+    }
+
+    public void goToPageFinish() {
+        driver.findElement(FINISH_BUTTON).click();
     }
 }
