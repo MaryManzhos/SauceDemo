@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Smoke Test" parallel="tests" thread-count="2">
+    <test name="CartTest">
+        <classes>
+            <class name="tests.CartTest" />
+        </classes>
+    </test>
+    <test name="CheckoutInformationTest">
+        <classes>
+            <class name="tests.CheckoutInformationTest" />
+        </classes>
+    </test>
+    <test name="CheckoutOverviewTest">
+        <classes>
+            <class name="tests.CheckoutOverviewTest" />
+        </classes>
+    </test>
+    <test name="FinishTest">
+        <classes>
+            <class name="tests.FinishTest" />
+        </classes>
+    </test>
+    <test name="LoginTest">
+        <classes>
+            <class name="tests.LoginTest" />
+        </classes>
+    </test>
+    <test name="ProductDetailsTest">
+        <classes>
+            <class name="tests.ProductDetailsTest" />
+        </classes>
+    </test>
+    <test name="ProductTest">
+        <classes>
+            <class name="tests.ProductsTest" />
+        </classes>
+    </test>
+</suite>

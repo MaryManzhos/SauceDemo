@@ -21,7 +21,7 @@ public class CheckoutInformationTest extends BaseTest {
         assertEquals(checkoutOverviewPage.getTitlePage(), "Checkout: Overview", "Don't title Checkout: Overview");
     }
 
-    @Test
+    @Test (retryAnalyzer = RetryAnalyzer.class)
     public void isCanceledToCheckoutInformation() {
         loginPage
                 .openPage()
