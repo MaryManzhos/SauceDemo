@@ -1,47 +1,57 @@
 package tests;
 
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 import static testData.TestData.*;
 
-public class CheckoutInformationTest extends BaseTest {
+public class CheckoutInformationTest extends BaseTestWithAuthorization {
     @Test
     public void isSuccessfulCheckoutInformation() {
-        loginPage.openPage();
-        loginPage.logIn(USERNAME_1, PASSWORD);
-        productsPage.addToCart(ITEM_PRODUCT_NAME_1);
-        header.goToPageCart();
-        cartPage.goToCheckoutInformationPage();
-        checkoutInformationPage.continueToPageCheckoutOverview(FIRST_NAME, LAST_NAME, ZIP_POSTAL_CODE);
+        productsPage
+                .addToCart(ITEM_PRODUCT_NAME_1);
+        header
+                .goToPageCart()
+                .goToCheckoutInformationPage()
+                .successfulContinueToPageCheckoutOverview(FIRST_NAME, LAST_NAME, ZIP_POSTAL_CODE);
+
         assertEquals(checkoutOverviewPage.getTitlePage(), "Checkout: Overview", "Don't title Checkout: Overview");
     }
 
-    @Test
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     public void isCanceledToCheckoutInformation() {
-        loginPage.openPage();
-        loginPage.isPageOpen();
-        loginPage.logIn(USERNAME_1, PASSWORD);
-        productsPage.isPageOpen();
-        productsPage.addToCart(ITEM_PRODUCT_NAME_1);
-        header.goToPageCart();
-        cartPage.isPageOpen();
-        cartPage.goToCheckoutInformationPage();
-        checkoutInformationPage.returnToPageCart();
+        productsPage
+                .addToCart(ITEM_PRODUCT_NAME_1);
+        header
+                .goToPageCart()
+                .isPageOpen()
+                .goToCheckoutInformationPage()
+                .returnToPageCart();
+
         assertEquals(cartPage.getTitleOfPage(), "Your Cart", "Don't title Your Cart");
     }
 
-    @Test
-    public void showErrorMessageWhenFieldsAreEmpty() {
-        loginPage.openPage();
-        loginPage.isPageOpen();
-        loginPage.logIn(USERNAME_1, PASSWORD);
-        productsPage.isPageOpen();
-        productsPage.addToCart(ITEM_PRODUCT_NAME_1);
-        header.goToPageCart();
-        cartPage.isPageOpen();
-        cartPage.goToCheckoutInformationPage();
-        checkoutInformationPage.continueToPageCheckoutOverview("","","");
-        assertEquals(checkoutInformationPage.getErrorMessage(), "Error: First Name is required", "Don't display error message");
+    @DataProvider(name = "Data for test error message")
+    public Object[][] dataForTestErrorMessage() {
+        return new Object[][]{
+                {"", "", "", "Error: First Name is required"},
+                {"", LAST_NAME, ZIP_POSTAL_CODE, "Error: First Name is required"},
+                {FIRST_NAME, "", ZIP_POSTAL_CODE, "Error: Last Name is required"},
+                {FIRST_NAME, LAST_NAME, "", "Error: Postal Code is required"}
+        };
+    }
+
+    @Test(dataProvider = "Data for test error message")
+    public void showErrorMessageWhenFieldsAreEmpty(String firstName, String lastName, String zipPostalCode, String expectedResult) {
+        productsPage
+                .addToCart(ITEM_PRODUCT_NAME_1);
+        header
+                .goToPageCart()
+                .isPageOpen()
+                .goToCheckoutInformationPage()
+                .successfulContinueToPageCheckoutOverview(firstName, lastName, zipPostalCode);
+
+        assertEquals(checkoutInformationPage.getErrorMessage(), expectedResult, "Don't display error message");
     }
 }

@@ -21,8 +21,9 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    public void openPage() {
+    public LoginPage openPage() {
         driver.get(URL);
+        return this;
     }
 
     public void logIn(String username, String password) {
@@ -33,5 +34,17 @@ public class LoginPage extends BasePage {
 
     public String getErrorMessage() {
         return driver.findElement(ERROR_MESSAGE).getText();
+    }
+
+    public LoginPage failedLogIn(String username, String password) {
+        driver.findElement(USERNAME_INPUT).sendKeys(username);
+        driver.findElement(PASSWORD_INPUT).sendKeys(password);
+        driver.findElement(LOGIN_BUTTON).click();
+        return this;
+    }
+
+    public ProductsPage successfulLogIn(String username, String password) {
+        failedLogIn(username, password);
+        return new ProductsPage(driver);
     }
 }

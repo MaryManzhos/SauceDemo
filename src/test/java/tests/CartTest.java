@@ -3,35 +3,35 @@ package tests;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
-import static testData.TestData.*;
+import static testData.TestData.ITEM_PRODUCT_NAME_1;
+import static testData.TestData.ITEM_PRODUCT_NAME_2;
 
-public class CartTest extends BaseTest {
+public class CartTest extends BaseTestWithAuthorization {
 
     @Test
     public void backToProductPage() {
-        loginPage.openPage();
-        loginPage.isPageOpen();
-        loginPage.logIn(USERNAME_1, PASSWORD);
-        productsPage.isPageOpen();
-        productsPage.addToCart(ITEM_PRODUCT_NAME_1);
-        productsPage.addToCart(ITEM_PRODUCT_NAME_2);
-        header.goToPageCart();
-        cartPage.isPageOpen();
-        cartPage.goToProductPage();
+        productsPage
+                .addToCart(ITEM_PRODUCT_NAME_1)
+                .addToCart(ITEM_PRODUCT_NAME_2);
+        header
+                .goToPageCart()
+                .isPageOpen()
+                .goToProductPage();
+
         assertEquals(productsPage.getNameOfPage(), "Products");
     }
 
-    @Test
+
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     public void removeItemFromCart() {
-        loginPage.openPage();
-        loginPage.isPageOpen();
-        loginPage.logIn(USERNAME_1, PASSWORD);
-        productsPage.isPageOpen();
-        productsPage.addToCart(ITEM_PRODUCT_NAME_1);
-        productsPage.addToCart(ITEM_PRODUCT_NAME_2);
-        header.goToPageCart();
-        cartPage.isPageOpen();
-        cartPage.removeItemFromCart(0);
-        assertEquals(cartPage.isItemRemoved(),1);
+        productsPage
+                .addToCart(ITEM_PRODUCT_NAME_1)
+                .addToCart(ITEM_PRODUCT_NAME_2);
+        header
+                .goToPageCart()
+                .isPageOpen()
+                .removeItemFromCart();
+
+        assertEquals(cartPage.isItemRemoved(), 1);
     }
 }
