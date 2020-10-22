@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 public class BaseTest {
 
     WebDriver driver;
-    LoginPage loginPage;
+    LoginPage  loginPage;
     ProductsPage productsPage;
     CartPage cartPage;
     Header header;
