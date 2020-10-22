@@ -50,8 +50,8 @@ public class CartPage extends BasePage {
         return driver.findElement(TITLE_OF_PAGE).getText();
     }
 
-    public void removeItemFromCart() {
-        driver.findElements(REMOVE_BUTTON).get(0).click();
+    public void removeItemFromCart(int numberOfItem) {
+        driver.findElements(REMOVE_BUTTON).get(numberOfItem).click();
     }
 
     public int isItemRemoved() {

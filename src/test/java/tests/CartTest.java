@@ -31,7 +31,7 @@ public class CartTest extends BaseTest {
         productsPage.addToCart(ITEM_PRODUCT_NAME_2);
         header.goToPageCart();
         cartPage.isPageOpen();
-        cartPage.removeItemFromCart();
+        cartPage.removeItemFromCart(0);
         assertEquals(cartPage.isItemRemoved(),1);
     }
 }
