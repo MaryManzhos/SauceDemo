@@ -10,4 +10,6 @@ public class TestData {
     public static final String FIRST_NAME = "John";
     public static final String LAST_NAME = "Snow";
     public static final String ZIP_POSTAL_CODE = "2207955";
+    public static final String ITEM_PRODUCT_NAME_1 = "Sauce Labs Fleece Jacket";
+    public static final String ITEM_PRODUCT_NAME_2 = "Sauce Labs Onesie";
 }

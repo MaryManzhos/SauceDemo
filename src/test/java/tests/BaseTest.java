@@ -18,6 +18,8 @@ public class BaseTest {
     Header header;
     CheckoutInformationPage checkoutInformationPage;
     CheckoutOverviewPage checkoutOverviewPage;
+    ProductDetailPage productDetailPage;
+    FinishPage finishPage;
 
     @BeforeMethod
     public void setUp() {
@@ -33,6 +35,8 @@ public class BaseTest {
         header = new Header(driver);
         checkoutInformationPage = new CheckoutInformationPage(driver);
         checkoutOverviewPage = new CheckoutOverviewPage(driver);
+        productDetailPage = new ProductDetailPage(driver);
+        finishPage = new FinishPage(driver);
     }
 
     @AfterMethod

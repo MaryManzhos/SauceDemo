@@ -1,14 +1,21 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertEquals;
 
 public class CartPage extends BasePage {
 
-    public static final By CHECKOUT_BUTTON = By.className("checkout_button");
+    public static final By CHECKOUT_BUTTON = By.cssSelector(".checkout_button");
+    public static final By REMOVE_BUTTON = By.cssSelector(".cart_button");
+    public static final By CONTINUE_SHOPPING_BUTTON = By.cssSelector(".cart_footer .btn_secondary");
+    public static final By ITEMS = By.cssSelector(".cart_item");
+    public static final By TITLE_OF_PAGE = By.cssSelector(".subheader");
     String priceLocator = "//*[contains(text(),'%s')]/ancestor::*[@class='cart_item']" +
             "//div[@class='inventory_item_price']";
     String quantityLocator = "//*[contains(text(),'%s')]/ancestor::*[@class='cart_item']" +
@@ -29,7 +36,33 @@ public class CartPage extends BasePage {
         assertEquals(actualQuantity, quantity, "Price is not correct");
     }
 
+    public boolean isCartEmpty() {
+        try{
+            driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+            driver.findElement(ITEMS);
+            return false;
+        } catch (NoSuchElementException e){
+            return true;
+        }
+    }
+
+    public String getTitleOfPage() {
+        return driver.findElement(TITLE_OF_PAGE).getText();
+    }
+
+    public void removeItemFromCart(int numberOfItem) {
+        driver.findElements(REMOVE_BUTTON).get(numberOfItem).click();
+    }
+
+    public int isItemRemoved() {
+        return driver.findElements(REMOVE_BUTTON).size();
+    }
+
     public void goToCheckoutInformationPage() {
         driver.findElement(CHECKOUT_BUTTON).click();
+    }
+
+    public void goToProductPage() {
+        driver.findElement(CONTINUE_SHOPPING_BUTTON).click();
     }
 }

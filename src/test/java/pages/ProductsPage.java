@@ -5,8 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ProductsPage extends BasePage {
-    public static final By NAME_OF_PAGE_PRODUCTS = By.className("product_label");
+    public static final By NAME_OF_PAGE_PRODUCTS = By.cssSelector(".product_label");
     String addToCartLocator = "//*[contains(text(),'%s')]/ancestor::div[@class='inventory_item']//button";
+    String itemProduct = "//*[contains(text(),'%s')]//ancestor::div[@class='inventory_item_name']";
 
     public ProductsPage(WebDriver driver) {
         super(driver);
@@ -23,4 +24,10 @@ public class ProductsPage extends BasePage {
     public void addToCart(String productName) {
         driver.findElement(By.xpath(String.format(addToCartLocator, productName))).click();
     }
+
+    public void goToProductDetails(String productName) {
+        driver.findElement(By.xpath(String.format(itemProduct,productName))).click();
+    }
+
+
 }
