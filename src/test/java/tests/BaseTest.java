@@ -41,7 +41,7 @@ public class BaseTest {
         finishPage = new FinishPage(driver);
     }
 
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     public void closeBrowser() {
         driver.quit();
     }
