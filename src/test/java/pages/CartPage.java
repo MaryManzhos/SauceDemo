@@ -54,6 +54,10 @@ public class CartPage extends BasePage {
         return driver.findElement(TITLE_OF_PAGE).getText();
     }
 
+    public int getCountOfItems() {
+        return driver.findElements(REMOVE_BUTTON).size();
+    }
+
     public CartPage removeItemFromCart() {
         driver.findElements(REMOVE_BUTTON).get(0).click();
         return this;

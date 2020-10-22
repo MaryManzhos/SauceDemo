@@ -4,17 +4,14 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
-import static testData.TestData.*;
+import static testData.TestData.ITEM_PRODUCT_NAME_1;
+import static testData.TestData.ITEM_PRODUCT_NAME_2;
 
-public class ProductsTest extends BaseTest {
+public class ProductsTest extends BaseTestWithAuthorization {
+
     @Test
     public void productsShouldBeAddedIntoCart() {
-        loginPage
-                .openPage()
-                .isPageOpen()
-                .successfulLogIn(USERNAME_1, PASSWORD);
         productsPage
-                .isPageOpen()
                 .addToCart(ITEM_PRODUCT_NAME_1);
         header
                 .goToPageCart()
@@ -27,24 +24,18 @@ public class ProductsTest extends BaseTest {
 
     @Test
     public void displayCounterOnCart() {
-        loginPage
-                .openPage()
-                .isPageOpen()
-                .successfulLogIn(USERNAME_1, PASSWORD)
-                .isPageOpen()
+        productsPage
                 .addToCart(ITEM_PRODUCT_NAME_1)
                 .addToCart(ITEM_PRODUCT_NAME_2);
 
         assertEquals(header.getCounterFromCart(), "2");
+
+        header.goToPageCart();
     }
 
     @Test
     public void productsShouldBeRemovedFromCart() {
-        loginPage
-                .openPage()
-                .isPageOpen()
-                .successfulLogIn(USERNAME_1, PASSWORD)
-                .isPageOpen()
+        productsPage
                 .addToCart(ITEM_PRODUCT_NAME_1)
                 .addToCart(ITEM_PRODUCT_NAME_1);
         header

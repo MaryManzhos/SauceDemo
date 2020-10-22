@@ -5,15 +5,11 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 import static testData.TestData.*;
 
-public class CheckoutOverviewTest extends BaseTest {
+public class CheckoutOverviewTest extends BaseTestWithAuthorization {
 
     @Test
     public void calculationSumOfCost() {
-        loginPage
-                .openPage()
-                .isPageOpen()
-                .successfulLogIn(USERNAME_1, PASSWORD)
-                .isPageOpen()
+        productsPage
                 .addToCart(ITEM_PRODUCT_NAME_1);
         header
                 .goToPageCart()
@@ -28,11 +24,7 @@ public class CheckoutOverviewTest extends BaseTest {
 
     @Test
     public void isCanceledToCheckoutInformation() {
-        loginPage
-                .openPage()
-                .isPageOpen()
-                .successfulLogIn(USERNAME_1, PASSWORD)
-                .isPageOpen()
+        productsPage
                 .addToCart(ITEM_PRODUCT_NAME_1);
         header
                 .goToPageCart()

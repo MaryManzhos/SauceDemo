@@ -1,5 +1,6 @@
 package tests;
 
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
@@ -18,34 +19,22 @@ public class LoginTest extends BaseTest {
         assertEquals(productsPage.getNameOfPage(), "Products", "Is not page Products");
     }
 
-    @Test
-    public void displayErrorMessageWhenUsernameIsEmpty() {
+    @Test(dataProvider = "Data fo test login")
+    public void displayErrorMessage(String username, String password, String expectedResult) {
         loginPage
                 .openPage()
                 .isPageOpen()
-                .failedLogIn("", PASSWORD);
+                .failedLogIn(username, password);
 
-        assertEquals(loginPage.getErrorMessage(), "Epic sadface: Username is required", "Don't display error message");
+        assertEquals(loginPage.getErrorMessage(), expectedResult, "Don't display error message");
     }
 
-    @Test
-    public void displayErrorMessageWhenPasswordIsEmpty() {
-        loginPage
-                .openPage()
-                .isPageOpen()
-                .failedLogIn(USERNAME_1, "");
-
-        assertEquals(loginPage.getErrorMessage(), "Epic sadface: Password is required", "Don't display error message");
+    @DataProvider(name = "Data fo test login")
+    public Object[][] dataForTestLogin() {
+        return new Object[][]{
+                {"", PASSWORD, "Epic sadface: Username is required"},
+                {USERNAME_1, "", "Epic sadface: Password is required"},
+                {USERNAME_1, "12345", "Epic sadface: Username and password do not match any user in this service"}
+        };
     }
-
-    @Test
-    public void displayErrorMessageWhenUsernameIsNotValid() {
-        loginPage
-                .openPage()
-                .isPageOpen()
-                .failedLogIn(USERNAME_1, "12345");
-
-        assertEquals(loginPage.getErrorMessage(), "Epic sadface: Username and password do not match any user in this service", "Don't display error message");
-    }
-
 }
