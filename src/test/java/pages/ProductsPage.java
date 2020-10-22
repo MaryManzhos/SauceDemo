@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ProductsPage extends BasePage {
-    public static final By NAME_OF_PAGE_PRODUCTS = By.className("product_label");
+    public static final By NAME_OF_PAGE_PRODUCTS = By.cssSelector(".product_label");
     String addToCartLocator = "//*[contains(text(),'%s')]/ancestor::div[@class='inventory_item']//button";
     String itemProduct = "//*[contains(text(),'%s')]//ancestor::div[@class='inventory_item_name']";
 
@@ -17,18 +17,17 @@ public class ProductsPage extends BasePage {
         return driver.findElement(NAME_OF_PAGE_PRODUCTS).getText();
     }
 
-    public ProductsPage isPageOpen() {
+    public void isPageOpen() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(NAME_OF_PAGE_PRODUCTS));
-        return this;
     }
 
-    public ProductsPage addToCart(String productName) {
+    public void addToCart(String productName) {
         driver.findElement(By.xpath(String.format(addToCartLocator, productName))).click();
-        return this;
     }
 
-    public ProductDetailPage goToProductDetails(String productName) {
-        driver.findElement(By.xpath(String.format(itemProduct, productName))).click();
-        return new ProductDetailPage(driver);
+    public void goToProductDetails(String productName) {
+        driver.findElement(By.xpath(String.format(itemProduct,productName))).click();
     }
+
+
 }

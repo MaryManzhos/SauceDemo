@@ -11,17 +11,17 @@ import java.util.concurrent.TimeUnit;
 
 public class CartPage extends BasePage {
 
-    public static final By CHECKOUT_BUTTON = By.className("checkout_button");
-    public static final By REMOVE_BUTTON = By.className("cart_button");
+    public static final By CHECKOUT_BUTTON = By.cssSelector(".checkout_button");
+    public static final By REMOVE_BUTTON = By.cssSelector(".cart_button");
     public static final By CONTINUE_SHOPPING_BUTTON = By.cssSelector(".cart_footer .btn_secondary");
-    public static final By ITEMS = By.className("cart_item");
-    public static final By TITLE_OF_PAGE = By.className("subheader");
-    String productNameLocator = "//*[contains(text(),'%s')]/ancestor::*[@class='cart_item']" +
-            "//div[@class='inventory_item_name']";
-    String quantityLocator = "//*[contains(text(),'%s')]/ancestor::*[@class='cart_item']" +
-            "//div[@class='cart_quantity']";
+    public static final By ITEMS = By.cssSelector(".cart_item");
+    public static final By TITLE_OF_PAGE = By.cssSelector(".subheader");
     String priceLocator = "//*[contains(text(),'%s')]/ancestor::*[@class='cart_item']" +
             "//div[@class='inventory_item_price']";
+    String quantityLocator = "//*[contains(text(),'%s')]/ancestor::*[@class='cart_item']" +
+            "//div[@class='cart_quantity']";
+    String productNameLocator = "//*[contains(text(),'%s')]/ancestor::*[@class='cart_item']" +
+            "//div[@class='inventory_item_name']";
 
     public CartPage(WebDriver driver) {
         super(driver);
@@ -41,7 +41,7 @@ public class CartPage extends BasePage {
     }
 
     public boolean isCartEmpty() {
-        try {
+        try{
             driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
             driver.findElement(ITEMS);
             return false;
@@ -52,10 +52,6 @@ public class CartPage extends BasePage {
 
     public String getTitleOfPage() {
         return driver.findElement(TITLE_OF_PAGE).getText();
-    }
-
-    public int getCountOfItems() {
-        return driver.findElements(REMOVE_BUTTON).size();
     }
 
     public CartPage removeItemFromCart() {

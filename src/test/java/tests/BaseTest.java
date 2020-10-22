@@ -14,9 +14,7 @@ import java.util.concurrent.TimeUnit;
 public class BaseTest {
 
     WebDriver driver;
-    //LoginPage loginPage;
-    //LoginPageFactory loginPage;
-    LoginFluentChainOfInvocationPage loginPage;
+    LoginPage  loginPage;
     ProductsPage productsPage;
     CartPage cartPage;
     Header header;
@@ -33,7 +31,7 @@ public class BaseTest {
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        loginPage = new LoginFluentChainOfInvocationPage(driver);
+        loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
         cartPage = new CartPage(driver);
         header = new Header(driver);

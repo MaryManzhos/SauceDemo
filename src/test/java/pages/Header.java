@@ -6,9 +6,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class Header extends BasePage {
 
-    public static final By MENU_ICON = By.className("bm-burger-button");
+    public static final By MENU_ICON = By.cssSelector(".bm-burger-button");
     public static final By CART_ICON = By.cssSelector("[data-icon=shopping-cart]");
-    public static final By CART_COUNTER = By.className("shopping_cart_badge");
+    public static final By CART_COUNTER = By.cssSelector(".shopping_cart_badge");
     public static final By PRODUCT_PAGE = By.id("inventory_sidebar_link");
 
     public Header(WebDriver driver) {

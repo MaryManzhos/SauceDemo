@@ -8,10 +8,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CheckoutOverviewPage extends BasePage {
-    public static final By TITLE_PAGE = By.className("subheader");
-    public static final By TOTAL_ITEM = By.className("summary_subtotal_label");
-    public static final By TAX_ITEM = By.className("summary_tax_label");
-    public static final By TOTAL = By.className("summary_total_label");
+    public static final By TITLE_PAGE = By.cssSelector(".subheader");
+    public static final By TOTAL_ITEM = By.cssSelector(".summary_subtotal_label");
+    public static final By TAX_ITEM = By.cssSelector(".summary_tax_label");
+    public static final By TOTAL = By.cssSelector(".summary_total_label");
     public static final By CANCEL_BUTTON = By.cssSelector(".cart_cancel_link.btn_secondary");
     public static final By FINISH_BUTTON = By.cssSelector(".btn_action.cart_button");
 
@@ -19,16 +19,15 @@ public class CheckoutOverviewPage extends BasePage {
         super(driver);
     }
 
-    public CheckoutOverviewPage isPageOpen() {
+    public void isPageOpen() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(TITLE_PAGE));
-        return this;
     }
 
     public String getTitlePage() {
         return driver.findElement(TITLE_PAGE).getText();
     }
 
-    public Map<String, String> getValueFromSum() {
+    public Map<String,String> getValueFromSum() {
         Map<String, String> valuesOfSum = new HashMap<String, String>();
         valuesOfSum.put("Item_Total", driver.findElement(TOTAL_ITEM).getText());
         valuesOfSum.put("Item_Tax", driver.findElement(TAX_ITEM).getText());
@@ -36,13 +35,11 @@ public class CheckoutOverviewPage extends BasePage {
         return valuesOfSum;
     }
 
-    public CheckoutInformationPage returnToPageCheckOutInf() {
+    public void returnToPageCheckOutInf() {
         driver.findElement(CANCEL_BUTTON).click();
-        return new CheckoutInformationPage(driver);
     }
 
-    public FinishPage goToPageFinish() {
+    public void goToPageFinish() {
         driver.findElement(FINISH_BUTTON).click();
-        return new FinishPage(driver);
     }
 }
