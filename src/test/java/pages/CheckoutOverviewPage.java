@@ -8,10 +8,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CheckoutOverviewPage extends BasePage {
-    public static final By TITLE_PAGE = By.className("subheader");
-    public static final By TOTAL_ITEM = By.className("summary_subtotal_label");
-    public static final By TAX_ITEM = By.className("summary_tax_label");
-    public static final By TOTAL = By.className("summary_total_label");
+    public static final By TITLE_PAGE = By.cssSelector(".subheader");
+    public static final By TOTAL_ITEM = By.cssSelector(".summary_subtotal_label");
+    public static final By TAX_ITEM = By.cssSelector(".summary_tax_label");
+    public static final By TOTAL = By.cssSelector(".summary_total_label");
     public static final By CANCEL_BUTTON = By.cssSelector(".cart_cancel_link.btn_secondary");
     public static final By FINISH_BUTTON = By.cssSelector(".btn_action.cart_button");
 

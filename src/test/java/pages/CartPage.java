@@ -11,11 +11,11 @@ import static org.testng.Assert.assertEquals;
 
 public class CartPage extends BasePage {
 
-    public static final By CHECKOUT_BUTTON = By.className("checkout_button");
-    public static final By REMOVE_BUTTON = By.className("cart_button");
+    public static final By CHECKOUT_BUTTON = By.cssSelector(".checkout_button");
+    public static final By REMOVE_BUTTON = By.cssSelector(".cart_button");
     public static final By CONTINUE_SHOPPING_BUTTON = By.cssSelector(".cart_footer .btn_secondary");
-    public static final By ITEMS = By.className("cart_item");
-    public static final By TITLE_OF_PAGE = By.className("subheader");
+    public static final By ITEMS = By.cssSelector(".cart_item");
+    public static final By TITLE_OF_PAGE = By.cssSelector(".subheader");
     String priceLocator = "//*[contains(text(),'%s')]/ancestor::*[@class='cart_item']" +
             "//div[@class='inventory_item_price']";
     String quantityLocator = "//*[contains(text(),'%s')]/ancestor::*[@class='cart_item']" +
