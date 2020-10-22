@@ -16,9 +16,8 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    public LoginPage isPageOpen() {
+    public void isPageOpen() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(LOGIN_BUTTON));
-        return this;
     }
 
     public LoginPage openPage() {
