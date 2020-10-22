@@ -15,12 +15,14 @@ public class ProductDetailPage extends BasePage{
         super(driver);
     }
 
-    public void isPageOpen() {
+    public ProductDetailPage isPageOpen() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(String.format(nameOfProduct,ITEM_PRODUCT_NAME_1))));
+        return this;
     }
 
-    public void addToCartProduct() {
+    public ProductDetailPage addToCartProduct() {
         driver.findElement(ADD_TO_CART_BUTTON).click();
+        return this;
     }
 
     public void backToProductPage() {

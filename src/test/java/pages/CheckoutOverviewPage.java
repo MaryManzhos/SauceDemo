@@ -19,8 +19,9 @@ public class CheckoutOverviewPage extends BasePage {
         super(driver);
     }
 
-    public void isPageOpen() {
+    public CheckoutOverviewPage isPageOpen() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(TITLE_PAGE));
+        return this;
     }
 
     public String getTitlePage() {
@@ -39,7 +40,8 @@ public class CheckoutOverviewPage extends BasePage {
         driver.findElement(CANCEL_BUTTON).click();
     }
 
-    public void goToPageFinish() {
+    public FinishPage goToPageFinish() {
         driver.findElement(FINISH_BUTTON).click();
+        return new FinishPage(driver);
     }
 }

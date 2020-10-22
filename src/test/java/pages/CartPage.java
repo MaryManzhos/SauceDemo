@@ -72,4 +72,8 @@ public class CartPage extends BasePage {
         driver.findElement(CONTINUE_SHOPPING_BUTTON).click();
         return new ProductsPage(driver);
     }
+
+    public int getCountOfItems() {
+        return driver.findElements(REMOVE_BUTTON).size();
+    }
 }
