@@ -14,7 +14,7 @@ public class LoginTest extends BaseTest {
         loginPage
                 .openPage()
                 .isPageOpen()
-                .successfulLogIn(USERNAME_1, PASSWORD);
+                .successfulLogIn(USERNAME_1, System.getProperty("password"));
 
         assertEquals(productsPage.getNameOfPage(), "Products", "Is not page Products");
     }
