@@ -10,11 +10,7 @@ public class BaseTestWithAuthorization extends BaseTest {
 
     @BeforeClass
     public void authorization() {
-        loginPage
-                .openPage()
-                .isPageOpen()
-                .successfulLogIn(USERNAME_1, PASSWORD);
-        productsPage.isPageOpen();
+        loginSteps.authorization(USERNAME_1, PASSWORD);
     }
 
     @AfterMethod

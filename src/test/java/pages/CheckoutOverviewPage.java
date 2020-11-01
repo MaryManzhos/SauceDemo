@@ -36,6 +36,7 @@ public class CheckoutOverviewPage extends BasePage {
         return valuesOfSum;
     }
 
+
     public void returnToPageCheckOutInf() {
         driver.findElement(CANCEL_BUTTON).click();
     }

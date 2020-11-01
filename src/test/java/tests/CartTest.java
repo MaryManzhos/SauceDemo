@@ -3,20 +3,14 @@ package tests;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
-import static testData.TestData.ITEM_PRODUCT_NAME_1;
-import static testData.TestData.ITEM_PRODUCT_NAME_2;
+import static testData.TestData.*;
 
 public class CartTest extends BaseTestWithAuthorization {
 
     @Test
     public void backToProductPage() {
-        productsPage
-                .addToCart(ITEM_PRODUCT_NAME_1)
-                .addToCart(ITEM_PRODUCT_NAME_2);
-        header
-                .goToPageCart()
-                .isPageOpen()
-                .goToProductPage();
+        cartSteps.checkDisplayItemsIntoCart(ITEM_PRODUCT_NAME_1,ITEM_PRODUCT_NAME_2);
+        cartPage.goToProductPage();
 
         assertEquals(productsPage.getNameOfPage(), "Products");
     }
@@ -24,13 +18,8 @@ public class CartTest extends BaseTestWithAuthorization {
 
     @Test(retryAnalyzer = RetryAnalyzer.class)
     public void removeItemFromCart() {
-        productsPage
-                .addToCart(ITEM_PRODUCT_NAME_1)
-                .addToCart(ITEM_PRODUCT_NAME_2);
-        header
-                .goToPageCart()
-                .isPageOpen()
-                .removeItemFromCart();
+        cartSteps.checkDisplayItemsIntoCart(ITEM_PRODUCT_NAME_1,ITEM_PRODUCT_NAME_2);
+        cartPage.removeItemFromCart();
 
         assertEquals(cartPage.isItemRemoved(), 1);
     }
