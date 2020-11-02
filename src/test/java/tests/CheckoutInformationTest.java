@@ -9,25 +9,16 @@ import static testData.TestData.*;
 public class CheckoutInformationTest extends BaseTestWithAuthorization {
     @Test
     public void isSuccessfulCheckoutInformation() {
-        productsPage
-                .addToCart(ITEM_PRODUCT_NAME_1);
-        header
-                .goToPageCart()
-                .goToCheckoutInformationPage()
-                .successfulContinueToPageCheckoutOverview(FIRST_NAME, LAST_NAME, ZIP_POSTAL_CODE);
+        checkoutSteps.checkOutProducts(ITEM_PRODUCT_NAME_1);
+        checkoutInformationPage.successfulContinueToPageCheckoutOverview(FIRST_NAME, LAST_NAME, ZIP_POSTAL_CODE);
 
         assertEquals(checkoutOverviewPage.getTitlePage(), "Checkout: Overview", "Don't title Checkout: Overview");
     }
 
     @Test(retryAnalyzer = RetryAnalyzer.class)
     public void isCanceledToCheckoutInformation() {
-        productsPage
-                .addToCart(ITEM_PRODUCT_NAME_1);
-        header
-                .goToPageCart()
-                .isPageOpen()
-                .goToCheckoutInformationPage()
-                .returnToPageCart();
+        checkoutSteps.checkOutProducts(ITEM_PRODUCT_NAME_1);
+        checkoutInformationPage.returnToPageCart();
 
         assertEquals(cartPage.getTitleOfPage(), "Your Cart", "Don't title Your Cart");
     }
@@ -44,13 +35,8 @@ public class CheckoutInformationTest extends BaseTestWithAuthorization {
 
     @Test(dataProvider = "Data for test error message")
     public void showErrorMessageWhenFieldsAreEmpty(String firstName, String lastName, String zipPostalCode, String expectedResult) {
-        productsPage
-                .addToCart(ITEM_PRODUCT_NAME_1);
-        header
-                .goToPageCart()
-                .isPageOpen()
-                .goToCheckoutInformationPage()
-                .successfulContinueToPageCheckoutOverview(firstName, lastName, zipPostalCode);
+        checkoutSteps.checkOutProducts(ITEM_PRODUCT_NAME_1);
+        checkoutInformationPage.successfulContinueToPageCheckoutOverview(firstName, lastName, zipPostalCode);
 
         assertEquals(checkoutInformationPage.getErrorMessage(), expectedResult, "Don't display error message");
     }

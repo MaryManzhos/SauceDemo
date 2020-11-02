@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -36,11 +37,12 @@ public class CheckoutOverviewPage extends BasePage {
         return valuesOfSum;
     }
 
-
+    @Step("Click button CANCEL")
     public void returnToPageCheckOutInf() {
         driver.findElement(CANCEL_BUTTON).click();
     }
 
+    @Step("Click button FINISH")
     public FinishPage goToPageFinish() {
         driver.findElement(FINISH_BUTTON).click();
         return new FinishPage(driver);

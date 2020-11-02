@@ -28,16 +28,11 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    public void logIn(String username, String password) {
-        driver.findElement(USERNAME_INPUT).sendKeys(username);
-        driver.findElement(PASSWORD_INPUT).sendKeys(password);
-        driver.findElement(LOGIN_BUTTON).click();
-    }
-
     public String getErrorMessage() {
         return driver.findElement(ERROR_MESSAGE).getText();
     }
 
+    @Step("Input invalid credentials and click button LOGIN")
     public LoginPage failedLogIn(String username, String password) {
         driver.findElement(USERNAME_INPUT).sendKeys(username);
         driver.findElement(PASSWORD_INPUT).sendKeys(password);
@@ -45,7 +40,7 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    @Step("Input username, input password")
+    @Step("Input valid credentials and click button LOGIN")
     public ProductsPage successfulLogIn(String username, String password) {
         failedLogIn(username, password);
         return new ProductsPage(driver);

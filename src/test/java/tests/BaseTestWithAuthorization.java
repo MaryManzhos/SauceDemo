@@ -15,25 +15,7 @@ public class BaseTestWithAuthorization extends BaseTest {
 
     @AfterMethod
     public void goToProductPage() {
-        header
-                .goToPageCart()
-                .isPageOpen();
-
-        if (!cartPage.isCartEmpty()) {
-
-            int countOfItems = cartPage.getCountOfItems();
-            int countOfRemovedItems = 0;
-
-            while (countOfRemovedItems < countOfItems) {
-                cartPage.removeItemFromCart();
-                countOfRemovedItems++;
-            }
-        }
-        header
-                .isPageOpen()
-                .showMenu()
-                .isItemClickable()
-                .goToProductsPage()
-                .isPageOpen();
+        cartSteps.clearCart();
+        headerSteps.goToProductsPage();
     }
 }

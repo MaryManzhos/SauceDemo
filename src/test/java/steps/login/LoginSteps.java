@@ -1,17 +1,13 @@
-package steps.Login;
+package steps.login;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
-import pages.LoginPage;
-import pages.ProductsPage;
+import steps.BaseStep;
 
-public class LoginSteps {
-    protected LoginPage loginPage;
-    protected ProductsPage productsPage;
+public class LoginSteps extends BaseStep {
 
     public LoginSteps(WebDriver driver) {
-        loginPage = new LoginPage(driver);
-        productsPage = new ProductsPage(driver);
+        super(driver);
     }
 
     @Step("Authorization")

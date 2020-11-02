@@ -7,8 +7,11 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import pages.*;
-import steps.CartSteps;
-import steps.Login.LoginSteps;
+import steps.cart.CartSteps;
+import steps.checkout.CheckoutSteps;
+import steps.header.HeaderSteps;
+import steps.login.LoginSteps;
+import steps.productDetails.ProductDetailsStep;
 
 import java.util.concurrent.TimeUnit;
 
@@ -17,6 +20,9 @@ public class BaseTest {
 
     LoginSteps loginSteps;
     CartSteps cartSteps;
+    HeaderSteps headerSteps;
+    CheckoutSteps checkoutSteps;
+    ProductDetailsStep productDetailsStep;
     WebDriver driver;
     LoginPage  loginPage;
     ProductsPage productsPage;
@@ -45,6 +51,9 @@ public class BaseTest {
         finishPage = new FinishPage(driver);
         loginSteps = new LoginSteps(driver);
         cartSteps = new CartSteps(driver);
+        headerSteps = new HeaderSteps(driver);
+        checkoutSteps = new CheckoutSteps(driver);
+        productDetailsStep = new ProductDetailsStep(driver);
     }
 
     @AfterClass(alwaysRun = true)

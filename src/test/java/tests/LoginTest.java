@@ -11,10 +11,7 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void isSuccessfulAuthorization() {
-        loginPage
-                .openPage()
-                .isPageOpen()
-                .successfulLogIn(USERNAME_1, System.getProperty("password"));
+        loginSteps.authorization(USERNAME_1,PASSWORD);
 
         assertEquals(productsPage.getNameOfPage(), "Products", "Is not page Products");
     }

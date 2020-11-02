@@ -71,7 +71,7 @@ public class CartPage extends BasePage {
         return new CheckoutInformationPage(driver);
     }
 
-    @Step("Возврат к разделу с товарами")
+    @Step("Click button CONTINUE SHOPPING")
     public ProductsPage goToProductPage() {
         driver.findElement(CONTINUE_SHOPPING_BUTTON).click();
         return new ProductsPage(driver);

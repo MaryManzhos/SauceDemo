@@ -22,6 +22,7 @@ public class CheckoutInformationPage extends BasePage {
         return this;
     }
 
+    @Step("Fill out fields ang click CONTINUE")
     public CheckoutOverviewPage successfulContinueToPageCheckoutOverview(String firstName, String lastName, String zipPostalCode) {
         driver.findElement(FIRST_NAME_INPUT).sendKeys(firstName);
         driver.findElement(LAST_NAME_INPUT).sendKeys(lastName);

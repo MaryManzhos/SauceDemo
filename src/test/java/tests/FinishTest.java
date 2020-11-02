@@ -8,13 +8,8 @@ import static testData.TestData.*;
 public class FinishTest extends BaseTestWithAuthorization {
     @Test
     public void orderShouldBeCheckout() {
-        productsPage
-                .addToCart(ITEM_PRODUCT_NAME_1);
-        header
-                .goToPageCart()
-                .isPageOpen()
-                .goToCheckoutInformationPage()
-                .isPageOpen()
+        checkoutSteps.checkOutProducts(ITEM_PRODUCT_NAME_1);
+        checkoutInformationPage
                 .successfulContinueToPageCheckoutOverview(FIRST_NAME, LAST_NAME, ZIP_POSTAL_CODE)
                 .isPageOpen()
                 .goToPageFinish()
