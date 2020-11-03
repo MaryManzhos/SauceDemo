@@ -31,7 +31,7 @@ public class ProductsPage extends BasePage {
 
     @Step("Go to product details")
     public ProductDetailPage goToProductDetails(String productName) {
-        driver.findElement(By.xpath(String.format(itemProduct,productName))).click();
+        driver.findElement(By.xpath(String.format(itemProduct, productName))).click();
         return new ProductDetailPage(driver);
     }
 

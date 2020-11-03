@@ -10,7 +10,7 @@ public class HeaderSteps extends BaseStep {
         super(driver);
     }
 
-    @Step("Go to CART")
+    @Step("Go to Cart")
     public void goToCart() {
         header
                 .goToPageCart()

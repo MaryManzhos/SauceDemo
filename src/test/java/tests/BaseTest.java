@@ -1,14 +1,11 @@
 package tests;
 
-import org.openqa.selenium.SessionNotCreatedException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import pages.*;
 import steps.cart.CartSteps;
@@ -28,7 +25,7 @@ public class BaseTest {
     CheckoutSteps checkoutSteps;
     ProductDetailsStep productDetailsStep;
     WebDriver driver;
-    LoginPage  loginPage;
+    LoginPage loginPage;
     ProductsPage productsPage;
     CartPage cartPage;
     Header header;
@@ -37,7 +34,7 @@ public class BaseTest {
     ProductDetailPage productDetailPage;
     FinishPage finishPage;
 
-    @BeforeClass
+    @BeforeClass(description = "Create Chrome Driver")
     public void setUp(ITestContext context) {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
         ChromeOptions options = new ChromeOptions();
@@ -63,9 +60,9 @@ public class BaseTest {
         productDetailsStep = new ProductDetailsStep(driver);
     }
 
-    @AfterClass(alwaysRun = true)
+    @AfterClass(description = "Close browser", alwaysRun = true)
     public void closeBrowser() {
-        if(driver != null) {
+        if (driver != null) {
             driver.quit();
         }
     }

@@ -29,7 +29,7 @@ public class CheckoutOverviewPage extends BasePage {
         return driver.findElement(TITLE_PAGE).getText();
     }
 
-    public Map<String,String> getValueFromSum() {
+    public Map<String, String> getValueFromSum() {
         Map<String, String> valuesOfSum = new HashMap<String, String>();
         valuesOfSum.put("Item_Total", driver.findElement(TOTAL_ITEM).getText());
         valuesOfSum.put("Item_Tax", driver.findElement(TAX_ITEM).getText());

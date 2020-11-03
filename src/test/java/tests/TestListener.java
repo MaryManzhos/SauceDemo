@@ -43,13 +43,13 @@ public class TestListener implements ITestListener {
         ITestContext context = iTestResult.getTestContext();
         try {
             WebDriver driver = (WebDriver) context.getAttribute("driver");
-            if(driver != null) {
+            if (driver != null) {
                 return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-            }else {
-                return new byte[] {};
+            } else {
+                return new byte[]{};
             }
         } catch (NoSuchSessionException | IllegalStateException ex) {
-            return new byte[] {};
+            return new byte[]{};
         }
     }
 

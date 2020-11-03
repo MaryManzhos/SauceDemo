@@ -42,7 +42,7 @@ public class CartPage extends BasePage {
     }
 
     public boolean isCartEmpty() {
-        try{
+        try {
             driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
             driver.findElement(ITEMS);
             return false;

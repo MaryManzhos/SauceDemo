@@ -10,12 +10,12 @@ public class LoginSteps extends BaseStep {
         super(driver);
     }
 
-    @Step("Authorization")
+    @Step("Authorization with username '{username}'")
     public void authorization(String username, String password) {
         loginPage
                 .openPage()
                 .isPageOpen()
-                .successfulLogIn(username,password)
+                .successfulLogIn(username, password)
                 .isPageOpen();
     }
 }

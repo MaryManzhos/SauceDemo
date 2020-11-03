@@ -12,7 +12,7 @@ public class CartSteps extends BaseStep {
         super(driver);
     }
 
-    @Step("Go to added items into cart")
+    @Step("Go to cart with added items")
     public void checkDisplayItemsIntoCart(String item1, String item2) {
         productsPage
                 .addToCart(item1)
@@ -23,7 +23,7 @@ public class CartSteps extends BaseStep {
     }
 
     @Step("Clear cart")
-    public void clearCart(){
+    public void clearCart() {
         header
                 .goToPageCart()
                 .isPageOpen();
