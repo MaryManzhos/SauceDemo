@@ -7,7 +7,7 @@ import static org.testng.Assert.assertEquals;
 import static testData.TestData.*;
 
 public class CheckoutInformationTest extends BaseTestWithAuthorization {
-    @Test
+    @Test(description = "Authorization with valid credentials")
     public void isSuccessfulCheckoutInformation() {
         checkoutSteps.checkOutProducts(ITEM_PRODUCT_NAME_1);
         checkoutInformationPage.successfulContinueToPageCheckoutOverview(FIRST_NAME, LAST_NAME, ZIP_POSTAL_CODE);
@@ -15,7 +15,7 @@ public class CheckoutInformationTest extends BaseTestWithAuthorization {
         assertEquals(checkoutOverviewPage.getTitlePage(), "Checkout: Overview", "Don't title Checkout: Overview");
     }
 
-    @Test(retryAnalyzer = RetryAnalyzer.class)
+    @Test(description = "Clickable button CANCEL", retryAnalyzer = RetryAnalyzer.class)
     public void isCanceledToCheckoutInformation() {
         checkoutSteps.checkOutProducts(ITEM_PRODUCT_NAME_1);
         checkoutInformationPage.returnToPageCart();
@@ -33,7 +33,7 @@ public class CheckoutInformationTest extends BaseTestWithAuthorization {
         };
     }
 
-    @Test(dataProvider = "Data for test error message")
+    @Test(description = "Show error message with authorization with invalid credentials", dataProvider = "Data for test error message")
     public void showErrorMessageWhenFieldsAreEmpty(String firstName, String lastName, String zipPostalCode, String expectedResult) {
         checkoutSteps.checkOutProducts(ITEM_PRODUCT_NAME_1);
         checkoutInformationPage.successfulContinueToPageCheckoutOverview(firstName, lastName, zipPostalCode);

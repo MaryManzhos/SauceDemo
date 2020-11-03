@@ -7,7 +7,7 @@ import static testData.TestData.*;
 
 public class CheckoutOverviewTest extends BaseTestWithAuthorization {
 
-    @Test
+    @Test(description = "Calculation price, tax and total price of item")
     public void calculationSumOfCost() {
         checkoutSteps.checkOutProducts(ITEM_PRODUCT_NAME_1);
         checkoutInformationPage.successfulContinueToPageCheckoutOverview(FIRST_NAME, LAST_NAME, ZIP_POSTAL_CODE);
@@ -17,7 +17,7 @@ public class CheckoutOverviewTest extends BaseTestWithAuthorization {
         assertEquals(checkoutOverviewPage.getValueFromSum().get("Total"), "Total: $53.99");
     }
 
-    @Test
+    @Test(description = "Clickable button CANCEL")
     public void isCanceledToCheckoutInformation() {
         checkoutSteps.checkOutProducts(ITEM_PRODUCT_NAME_1);
         checkoutInformationPage

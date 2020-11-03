@@ -6,7 +6,7 @@ import static org.testng.Assert.assertEquals;
 import static testData.TestData.*;
 
 public class FinishTest extends BaseTestWithAuthorization {
-    @Test
+    @Test(description = "Заказ товара")
     public void orderShouldBeCheckout() {
         checkoutSteps.checkOutProducts(ITEM_PRODUCT_NAME_1);
         checkoutInformationPage

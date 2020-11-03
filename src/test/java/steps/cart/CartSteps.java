@@ -4,6 +4,8 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import steps.BaseStep;
 
+import static org.testng.Assert.assertEquals;
+
 public class CartSteps extends BaseStep {
 
     public CartSteps(WebDriver driver) {
@@ -38,5 +40,11 @@ public class CartSteps extends BaseStep {
         }
     }
 
+    public void validateTitleOfProductPage() {
+        assertEquals(productsPage.getNameOfPage(), "Products");
+    }
 
+    public void validateRemovedItem() {
+        assertEquals(cartPage.isItemRemoved(), 1);
+    }
 }
