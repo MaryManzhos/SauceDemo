@@ -8,7 +8,7 @@ import static testData.TestData.ITEM_PRODUCT_NAME_1;
 
 public class ProductDetailsTest extends BaseTestWithAuthorization {
 
-    @Test
+    @Test(description = "Add product into cart from Product Details Page")
     public void addToCartProductFromProductDetailPage() {
         productDetailsStep.goToProductDetails(ITEM_PRODUCT_NAME_1);
         productDetailPage.addToCartProduct();
@@ -19,7 +19,7 @@ public class ProductDetailsTest extends BaseTestWithAuthorization {
         assertEquals(cartPage.getDetailsOfProductIntoCart(ITEM_PRODUCT_NAME_1).get("Price"), "49.99", "Price is not correct");
     }
 
-    @Test
+    @Test(description = "Remove product from cart from Product Details Page")
     public void removeProductFromCartFromProductDetailPage() {
         productDetailsStep.goToProductDetails(ITEM_PRODUCT_NAME_1);
         productDetailPage

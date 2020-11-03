@@ -9,7 +9,7 @@ import static testData.TestData.ITEM_PRODUCT_NAME_2;
 
 public class ProductsTest extends BaseTestWithAuthorization {
 
-    @Test
+    @Test(description = "Add product to cart from Product page")
     public void productsShouldBeAddedIntoCart() {
         productsPage.addToCart(ITEM_PRODUCT_NAME_1);
         headerSteps.goToCart();
@@ -19,7 +19,7 @@ public class ProductsTest extends BaseTestWithAuthorization {
         assertEquals(cartPage.getDetailsOfProductIntoCart(ITEM_PRODUCT_NAME_1).get("Price"), "49.99", "Price is not correct");
     }
 
-    @Test
+    @Test(description = "Display counter on cart icon")
     public void displayCounterOnCart() {
         productsPage
                 .addToCart(ITEM_PRODUCT_NAME_1)
@@ -28,7 +28,7 @@ public class ProductsTest extends BaseTestWithAuthorization {
         assertEquals(header.getCounterFromCart(), "2");
     }
 
-    @Test
+    @Test(description = "Remove product from cart from Product Page")
     public void productsShouldBeRemovedFromCart() {
         productsPage
                 .addToCart(ITEM_PRODUCT_NAME_1)
