@@ -1,10 +1,14 @@
 package tests;
 
+import org.openqa.selenium.SessionNotCreatedException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.Assert;
+import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import pages.*;
 import steps.cart.CartSteps;
@@ -34,11 +38,14 @@ public class BaseTest {
     FinishPage finishPage;
 
     @BeforeClass
-    public void setUp() {
+    public void setUp(ITestContext context) {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
         ChromeOptions options = new ChromeOptions();
         options.setHeadless(false);
         driver = new ChromeDriver(options);
+        String variable = "driver";
+        System.out.println("Setting driver into context with variable name " + variable);
+        context.setAttribute(variable, driver);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         loginPage = new LoginPage(driver);
@@ -58,6 +65,8 @@ public class BaseTest {
 
     @AfterClass(alwaysRun = true)
     public void closeBrowser() {
-        driver.quit();
+        if(driver != null) {
+            driver.quit();
+        }
     }
 }

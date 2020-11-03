@@ -11,7 +11,7 @@ public class LoginTest extends BaseTest {
 
     @Test(description = "Authorization with valid credentials")
     public void isSuccessfulAuthorization() {
-        loginSteps.authorization(USERNAME_1,PASSWORD);
+        loginSteps.authorization("MASHA",PASSWORD);
 
         assertEquals(productsPage.getNameOfPage(), "Products", "Is not page Products");
     }
