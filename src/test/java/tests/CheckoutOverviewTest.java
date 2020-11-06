@@ -7,29 +7,20 @@ import static testData.TestData.*;
 
 public class CheckoutOverviewTest extends BaseTestWithAuthorization {
 
-    @Test
+    @Test(description = "Calculation price, tax and total price of item")
     public void calculationSumOfCost() {
-        productsPage
-                .addToCart(ITEM_PRODUCT_NAME_1);
-        header
-                .goToPageCart()
-                .isPageOpen()
-                .goToCheckoutInformationPage()
-                .successfulContinueToPageCheckoutOverview(FIRST_NAME, LAST_NAME, ZIP_POSTAL_CODE);
+        checkoutSteps.checkOutProducts(ITEM_PRODUCT_NAME_1);
+        checkoutInformationPage.successfulContinueToPageCheckoutOverview(FIRST_NAME, LAST_NAME, ZIP_POSTAL_CODE);
 
         assertEquals(checkoutOverviewPage.getValueFromSum().get("Item_Total"), "Item total: $49.99");
         assertEquals(checkoutOverviewPage.getValueFromSum().get("Item_Tax"), "Tax: $4.00");
         assertEquals(checkoutOverviewPage.getValueFromSum().get("Total"), "Total: $53.99");
     }
 
-    @Test
+    @Test(description = "Clickable button CANCEL")
     public void isCanceledToCheckoutInformation() {
-        productsPage
-                .addToCart(ITEM_PRODUCT_NAME_1);
-        header
-                .goToPageCart()
-                .isPageOpen()
-                .goToCheckoutInformationPage()
+        checkoutSteps.checkOutProducts(ITEM_PRODUCT_NAME_1);
+        checkoutInformationPage
                 .successfulContinueToPageCheckoutOverview(FIRST_NAME, LAST_NAME, ZIP_POSTAL_CODE)
                 .returnToPageCheckOutInf();
 

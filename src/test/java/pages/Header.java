@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -29,16 +30,19 @@ public class Header extends BasePage {
         return this;
     }
 
+    @Step("Go to cart")
     public CartPage goToPageCart() {
         driver.findElement(CART_ICON).click();
         return new CartPage(driver);
     }
 
+    @Step("Click on menu icon")
     public Header showMenu() {
         driver.findElement(MENU_ICON).click();
         return this;
     }
 
+    @Step("Click menu item ALL PRODUCTS")
     public ProductsPage goToProductsPage() {
         driver.findElement(PRODUCT_PAGE).click();
         return new ProductsPage(driver);

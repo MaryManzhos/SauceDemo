@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -21,21 +22,17 @@ public class LoginPage extends BasePage {
         return this;
     }
 
+    @Step("Go to SauceDemo")
     public LoginPage openPage() {
         driver.get(URL);
         return this;
-    }
-
-    public void logIn(String username, String password) {
-        driver.findElement(USERNAME_INPUT).sendKeys(username);
-        driver.findElement(PASSWORD_INPUT).sendKeys(password);
-        driver.findElement(LOGIN_BUTTON).click();
     }
 
     public String getErrorMessage() {
         return driver.findElement(ERROR_MESSAGE).getText();
     }
 
+    @Step("Input invalid credentials and click button LOGIN")
     public LoginPage failedLogIn(String username, String password) {
         driver.findElement(USERNAME_INPUT).sendKeys(username);
         driver.findElement(PASSWORD_INPUT).sendKeys(password);
@@ -43,6 +40,7 @@ public class LoginPage extends BasePage {
         return this;
     }
 
+    @Step("Input valid credentials and click button LOGIN")
     public ProductsPage successfulLogIn(String username, String password) {
         failedLogIn(username, password);
         return new ProductsPage(driver);

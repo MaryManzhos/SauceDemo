@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -28,7 +29,7 @@ public class CheckoutOverviewPage extends BasePage {
         return driver.findElement(TITLE_PAGE).getText();
     }
 
-    public Map<String,String> getValueFromSum() {
+    public Map<String, String> getValueFromSum() {
         Map<String, String> valuesOfSum = new HashMap<String, String>();
         valuesOfSum.put("Item_Total", driver.findElement(TOTAL_ITEM).getText());
         valuesOfSum.put("Item_Tax", driver.findElement(TAX_ITEM).getText());
@@ -36,10 +37,12 @@ public class CheckoutOverviewPage extends BasePage {
         return valuesOfSum;
     }
 
+    @Step("Click button CANCEL")
     public void returnToPageCheckOutInf() {
         driver.findElement(CANCEL_BUTTON).click();
     }
 
+    @Step("Click button FINISH")
     public FinishPage goToPageFinish() {
         driver.findElement(FINISH_BUTTON).click();
         return new FinishPage(driver);

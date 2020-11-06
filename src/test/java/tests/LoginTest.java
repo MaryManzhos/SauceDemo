@@ -9,17 +9,14 @@ import static testData.TestData.USERNAME_1;
 
 public class LoginTest extends BaseTest {
 
-    @Test
+    @Test(description = "Authorization with valid credentials")
     public void isSuccessfulAuthorization() {
-        loginPage
-                .openPage()
-                .isPageOpen()
-                .successfulLogIn(USERNAME_1, System.getProperty("password"));
+        loginSteps.authorization("MASHA", PASSWORD);
 
         assertEquals(productsPage.getNameOfPage(), "Products", "Is not page Products");
     }
 
-    @Test(dataProvider = "Data fo test login")
+    @Test(description = "Display error message with authorization with invalid credentials", dataProvider = "Data fo test login")
     public void displayErrorMessage(String username, String password, String expectedResult) {
         loginPage
                 .openPage()

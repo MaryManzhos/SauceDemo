@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -22,15 +23,16 @@ public class ProductsPage extends BasePage {
         return this;
     }
 
+    @Step("Add item to cart")
     public ProductsPage addToCart(String productName) {
         driver.findElement(By.xpath(String.format(addToCartLocator, productName))).click();
         return this;
     }
 
+    @Step("Go to product details")
     public ProductDetailPage goToProductDetails(String productName) {
-        driver.findElement(By.xpath(String.format(itemProduct,productName))).click();
+        driver.findElement(By.xpath(String.format(itemProduct, productName))).click();
         return new ProductDetailPage(driver);
     }
-
 
 }

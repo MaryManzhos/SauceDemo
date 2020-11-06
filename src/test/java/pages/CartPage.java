@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -41,7 +42,7 @@ public class CartPage extends BasePage {
     }
 
     public boolean isCartEmpty() {
-        try{
+        try {
             driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
             driver.findElement(ITEMS);
             return false;
@@ -54,6 +55,7 @@ public class CartPage extends BasePage {
         return driver.findElement(TITLE_OF_PAGE).getText();
     }
 
+    @Step("Click button REMOVE")
     public CartPage removeItemFromCart() {
         driver.findElements(REMOVE_BUTTON).get(0).click();
         return this;
@@ -63,11 +65,13 @@ public class CartPage extends BasePage {
         return driver.findElements(REMOVE_BUTTON).size();
     }
 
+    @Step("Click button CHECKOUT")
     public CheckoutInformationPage goToCheckoutInformationPage() {
         driver.findElement(CHECKOUT_BUTTON).click();
         return new CheckoutInformationPage(driver);
     }
 
+    @Step("Click button CONTINUE SHOPPING")
     public ProductsPage goToProductPage() {
         driver.findElement(CONTINUE_SHOPPING_BUTTON).click();
         return new ProductsPage(driver);

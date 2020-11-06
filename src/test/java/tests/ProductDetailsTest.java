@@ -8,40 +8,32 @@ import static testData.TestData.ITEM_PRODUCT_NAME_1;
 
 public class ProductDetailsTest extends BaseTestWithAuthorization {
 
-    @Test
+    @Test(description = "Add product into cart on Product Details Page")
     public void addToCartProductFromProductDetailPage() {
-        productsPage
-                .goToProductDetails(ITEM_PRODUCT_NAME_1)
-                .isPageOpen()
-                .addToCartProduct();
-        header.goToPageCart()
-                .isPageOpen();
+        productDetailsStep.goToProductDetails(ITEM_PRODUCT_NAME_1);
+        productDetailPage.addToCartProduct();
+        headerSteps.goToCart();
 
         assertEquals(cartPage.getDetailsOfProductIntoCart(ITEM_PRODUCT_NAME_1).get("Quantity"), "1", "Quantity is not correct");
         assertEquals(cartPage.getDetailsOfProductIntoCart(ITEM_PRODUCT_NAME_1).get("Product_Name"), ITEM_PRODUCT_NAME_1, "Product name is not correct");
         assertEquals(cartPage.getDetailsOfProductIntoCart(ITEM_PRODUCT_NAME_1).get("Price"), "49.99", "Price is not correct");
     }
 
-    @Test
+    @Test(description = "Remove product from cart on Product Details Page")
     public void removeProductFromCartFromProductDetailPage() {
-        productsPage
-                .goToProductDetails(ITEM_PRODUCT_NAME_1)
-                .isPageOpen()
+        productDetailsStep.goToProductDetails(ITEM_PRODUCT_NAME_1);
+        productDetailPage
                 .addToCartProduct()
                 .addToCartProduct();
-        header
-                .goToPageCart()
-                .isPageOpen();
+        headerSteps.goToCart();
 
         assertTrue(cartPage.isCartEmpty());
     }
 
-    @Test
+    @Test(description = "Clickable button BACK")
     public void backToProductPage() {
-        productsPage
-                .goToProductDetails(ITEM_PRODUCT_NAME_1)
-                .isPageOpen()
-                .backToProductPage();
+        productDetailsStep.goToProductDetails(ITEM_PRODUCT_NAME_1);
+        productDetailPage.backToProductPage();
 
         assertEquals(productsPage.getNameOfPage(), "Products");
     }
