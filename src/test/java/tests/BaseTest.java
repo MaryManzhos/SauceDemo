@@ -13,6 +13,7 @@ import steps.checkout.CheckoutSteps;
 import steps.header.HeaderSteps;
 import steps.login.LoginSteps;
 import steps.productDetails.ProductDetailsStep;
+import utils.CapabilitiesGenerator;
 
 import java.util.concurrent.TimeUnit;
 
@@ -36,10 +37,10 @@ public class BaseTest {
 
     @BeforeClass(description = "Create Chrome Driver")
     public void setUp(ITestContext context) {
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
-        ChromeOptions options = new ChromeOptions();
-        options.setHeadless(false);
-        driver = new ChromeDriver(options);
+        //System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
+        //ChromeOptions options = new ChromeOptions();
+        //options.setHeadless(false);
+        driver = new ChromeDriver(CapabilitiesGenerator.getChromeOptions());
         String variable = "driver";
         System.out.println("Setting driver into context with variable name " + variable);
         context.setAttribute(variable, driver);
